@@ -1,0 +1,24 @@
+<form #albumForm="ngForm" (ngSubmit)="saveAlbum(albumForm)">
+    <!-- Champ titre -->
+    <div>
+        <label for="title">Titre :</label>
+        <input type="text" id="titre" name="titre" required minlength="1" maxlength="50" pattern="^[a-zA-Z0-9 ]+$"
+            ngModel #titre="ngModel" />
+        <div class="error" *ngIf="titre.invalid && titre.touched">
+            <p *ngIf="titre.errors?.['required']">Titre obligatoire.</p>
+            <p *ngIf="titre.errors?.['pattern']">Le titre ne doit contenir que des lettres ou des chiffres.</p>
+        </div>
+    </div>
+
+    <!-- Champ Photo de couverture -->
+    <div>
+        <label for="photo">Photo de couverture :</label>
+        <input type="text" id="photo" name="photo" minlength="5" ngModel #photo="ngModel" />
+        <div class="error" *ngIf="photo.invalid && photo.touched">
+            <p *ngIf="photo.errors?.['minlength']">Minimum 5 caractères.</p>
+        </div>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <button type="submit" [disabled]="albumForm.invalid">Ajouter album</button>
+</form>

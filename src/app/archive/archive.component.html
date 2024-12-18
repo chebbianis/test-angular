@@ -1,0 +1,19 @@
+<div class="archives-list">
+    <h1>Albums Archivés</h1>
+
+    <div *ngIf="archivedAlbums.length > 0; else noArchivedAlbums">
+        <ul>
+            <li *ngFor="let album of archivedAlbums" class="archive-item">
+                <img [src]="album.coverPicture" alt="{{ album.title }}" class="archive-image" />
+                <div class="archive-details">
+                    <h2>{{ album.title }}</h2>
+                    <p>Date de création : {{ album.creationDate | date }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #noArchivedAlbums>
+        <p>Aucun album archivé trouvé.</p>
+    </ng-template>
+</div>

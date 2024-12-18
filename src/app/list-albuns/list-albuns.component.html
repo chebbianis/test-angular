@@ -1,0 +1,21 @@
+<div class="album-list">
+    <h1>Liste des Albums</h1>
+
+    <div *ngIf="albums.length > 0; else noAlbums">
+        <ul>
+            <div *ngFor="let album of albums">
+                <div class="album-item">
+                    <p>{{ album.title }}</p>
+                    <img [src]="album.coverPicture" alt="Cover picture" width="100" height="100">
+                    <button *ngIf="album.id !== undefined" (click)="deleteAlbum(album.id)">Supprimer</button>
+                </div>
+            </div>
+
+
+        </ul>
+    </div>
+
+    <ng-template #noAlbums>
+        <p>Aucun album trouvé.</p>
+    </ng-template>
+</div>
